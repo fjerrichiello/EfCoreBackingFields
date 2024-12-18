@@ -7,9 +7,20 @@ public class AuthorRepository(ApplicationDbContext _context) : IAuthorRepository
 {
     public async Task<Author?> GetAsync(int id)
     {
-        var entity = await _context.Authors.FindAsync(id);
+        await Task.Delay(1);
+        return Get(id);
+    }
 
-        return entity is null ? null : new Author(entity);
+    private Author Get(int id)
+    {
+        var entity = _context.Authors.Select(x => x).First();
+
+
+        var query = _context.Authors.Where(x => x.Id == id);
+
+        Console.WriteLine(query.ToQueryString());
+
+        return new Author(entity);
     }
 
     public async Task<Author?> GetAsync(string firstName, string lastName)

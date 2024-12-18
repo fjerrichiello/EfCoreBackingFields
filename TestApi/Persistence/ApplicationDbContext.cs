@@ -11,7 +11,6 @@ public class ApplicationDbContext : DbContext
 
     public virtual DbSet<BookRequestEntity> BookRequests { get; set; } = null!;
 
-    public virtual DbSet<Test> Tests { get; set; } = null!;
 
     public ApplicationDbContext(
         DbContextOptions options) : base(options)
@@ -49,19 +48,19 @@ public class ApplicationDbContext : DbContext
             .HasIndex(b => new { b.AuthorId, b.Title })
             .IsUnique();
 
-        // List<AuthorEntity> authors =
-        // [
-        //     new Author() { Id = 1, AuthorId = "Dr.Seuss" },
-        //     new Author() { Id = 2, AuthorId = "Roald Dahl" },
-        //     new Author() { Id = 3, AuthorId = "Beatrix Potter" },
-        //     new Author() { Id = 4, AuthorId = "Maurice Sendak" },
-        //     new Author() { Id = 5, AuthorId = "Eric Carle" },
-        //     new Author() { Id = 6, AuthorId = "Shel Silverstein" },
-        //     new Author() { Id = 7, AuthorId = "Judy Blume" }
-        // ];
+        List<AuthorEntity> authors =
+        [
+            new AuthorEntity(1, "Dr.", "Seuss"),
+            new AuthorEntity(2, "Roald", "Dahl"),
+            new AuthorEntity(3, "Beatrix", "Potter"),
+            new AuthorEntity(4, "Maurice", "Sendak"),
+            new AuthorEntity(5, "Eric", "Carle"),
+            new AuthorEntity(6, "Shel", "Silverstein"),
+            new AuthorEntity(7, "Judy", "Blume")
+        ];
 
 
-        // modelBuilder.Entity<AuthorEntity>()
-        //     .HasData(authors);
+        modelBuilder.Entity<AuthorEntity>()
+            .HasData(authors);
     }
 }
