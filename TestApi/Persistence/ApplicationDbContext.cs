@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TestApi.Persistence.Models;
 
 namespace TestApi.Persistence;
 
@@ -9,6 +10,8 @@ public class ApplicationDbContext : DbContext
     public virtual DbSet<BookEntity> Books { get; set; } = null!;
 
     public virtual DbSet<BookRequestEntity> BookRequests { get; set; } = null!;
+
+    public virtual DbSet<Test> Tests { get; set; } = null!;
 
     public ApplicationDbContext(
         DbContextOptions options) : base(options)
